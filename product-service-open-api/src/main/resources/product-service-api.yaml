@@ -1,0 +1,147 @@
+openapi: 3.0.2
+info:
+  title: Product service open api specification
+  description: "Product service open api specification"
+  version: 1.0.0-SNAPSHOT
+servers:
+  - url: http://localhost:7002
+    description: LOCAL
+tags:
+  - name: products
+    description: Operations with products
+paths:
+  /products:
+    post:
+      tags:
+        - products
+      summary: Create product
+      description: Create a new product
+      operationId: createProduct
+      requestBody:
+        description: Product to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/furnitureDto'
+        required: true
+      responses:
+        201:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/furnitureDto'
+      x-codegen-request-body-name: body
+    get:
+      summary: Get a list of products
+      operationId: getProducts
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/furnitureDto'
+  /products/{productId}:
+    put:
+      tags:
+        - products
+      summary: Update product
+      description: Update product
+      operationId: updateProduct
+      requestBody:
+        description: Updated product
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/furnitureDto'
+        required: true
+      parameters:
+        - name: productId
+          in: path
+          description: The product id that needs to be updated
+          required: true
+          schema:
+            type: long
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/furnitureDto'
+      x-codegen-request-body-name: furnitureDto
+    get:
+      tags:
+        - products
+      summary: Find product by identifier
+      description: Find product in the system
+      operationId: findProductById
+      parameters:
+        - name: productId
+          in: path
+          description: The product id that needs to be fetched
+          required: true
+          schema:
+            type: long
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/furnitureDto'
+    delete:
+      tags:
+        - products
+      summary: Delete product by identifier
+      description: Delete product
+      operationId: deleteProduct
+      parameters:
+        - name: productId
+          in: path
+          description: The product id that needs to be deleted
+          required: true
+          schema:
+            type: long
+      responses:
+        204:
+          description: Successful operation
+
+components:
+  schemas:
+    furnitureDto:
+      type: object
+      properties:
+        id:
+          type: long
+        name:
+          type: string
+        color:
+          type: string
+        price:
+          type: double
+        amount:
+          type: integer
+        furnitureType:
+          enum:
+            - TABLE
+            - CHAIR
+            - CLOSET
+        availableSizes:
+          type: array
+          items:
+            $ref: '#/components/schemas/furnitureSizeDto'
+    furnitureSizeDto:
+      type: object
+      properties:
+        id:
+          type: long
+        width:
+          type: integer
+        length:
+          type: integer
+        height:
+          type: integer

@@ -1,0 +1,128 @@
+openapi: 3.0.2
+info:
+  title: Order service open api specification
+  description: "Order service open api specification"
+  version: 1.0.0-SNAPSHOT
+servers:
+  - url: http://localhost:7002
+    description: LOCAL
+tags:
+  - name: orders
+    description: Operations with orders
+paths:
+  /orders:
+    post:
+      tags:
+        - orders
+      summary: Create order
+      description: Create a new order
+      operationId: createOrder
+      requestBody:
+        description: Order to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderDto'
+        required: true
+      responses:
+        201:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDto'
+      x-codegen-request-body-name: body
+    get:
+      summary: Get a list of orders
+      operationId: getOrders
+      responses:
+        '200':
+          description: List of orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderDto'
+  /orders/{orderId}:
+    put:
+      tags:
+        - orders
+      summary: Update order
+      description: Update order
+      operationId: updateOrder
+      requestBody:
+        description: Updated order
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderDto'
+        required: true
+      parameters:
+        - name: orderId
+          in: path
+          description: The order id that needs to be updated
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDto'
+      x-codegen-request-body-name: orderDto
+    get:
+      tags:
+        - orders
+      summary: Find order by identifier
+      description: Find order
+      operationId: findOrderById
+      parameters:
+        - name: orderId
+          in: path
+          description: The order id that needs to be fetched
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDto'
+    delete:
+      tags:
+        - orders
+      summary: Delete order by identifier
+      description: Delete order
+      operationId: deleteOrder
+      parameters:
+        - name: orderId
+          in: path
+          description: The order id that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Successful operation
+
+components:
+  schemas:
+    OrderDto:
+      type: object
+      properties:
+        id:
+          type: string
+        furnitureId:
+          type: long
+        totalPrice:
+          type: double
+        dateTime:
+          type: string
+          format: date-time
+        comment:
+          type: string

@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nikea</groupId>
+    <artifactId>nikea-open-api</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Archetype - nikea-open-api</name>
+    <url>http://maven.apache.org</url>
+    <modules>
+        <module>order-service-open-api</module>
+        <module>product-service-open-api</module>
+    </modules>
+    <properties>
+        <openapi.generator.version>4.3.1</openapi.generator.version>
+        <swagger.annotations.version>1.6.14</swagger.annotations.version>
+        <jackson-nullable.version>0.2.6</jackson-nullable.version>
+        <spring.web.version>2.3.0.RELEASE</spring.web.version>
+        <jakarta-validation.version>2.0.2</jakarta-validation.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta-validation.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.annotations.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>${jackson-nullable.version}</version>
+        </dependency>
+    </dependencies>
+</project>
