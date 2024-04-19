@@ -114,6 +114,8 @@ components:
   schemas:
     furnitureDto:
       type: object
+      required:
+        - name
       properties:
         id:
           type: long

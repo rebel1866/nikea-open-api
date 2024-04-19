@@ -38,6 +38,9 @@
                             <apiPackage>${openapi.package.api}</apiPackage>
                             <modelPackage>${openapi.package.model}</modelPackage>
                             <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                            <configOptions>
+                                <useJakartaEe>true</useJakartaEe>
+                            </configOptions>
                         </configuration>
                     </execution>
                 </executions>
