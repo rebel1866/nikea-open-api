@@ -40,6 +40,7 @@
                             <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
                             <configOptions>
                                 <useJakartaEe>true</useJakartaEe>
+                                 <unhandledException>true</unhandledException>
                             </configOptions>
                         </configuration>
                     </execution>
