@@ -109,7 +109,30 @@ paths:
       responses:
         204:
           description: Successful operation
-
+  /decrementProduct/{productId}:
+    post:
+      tags:
+        - products
+      summary: Decrement product
+      description: Decrement product
+      operationId: decrementProduct
+      parameters:
+        - name: productId
+          in: path
+          description: The product id that needs to be decremented
+          required: true
+          schema:
+            type: long
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/furnitureDto'
+        500:
+          description: Error
+      x-codegen-request-body-name: body
 components:
   schemas:
     furnitureDto:
